@@ -1,0 +1,9 @@
+asyncio
+asyncpg
+aiohttp
+uvicorn
+fastapi
+telethon
+pydantic-settings
+sqlalchemy
+qrcode
