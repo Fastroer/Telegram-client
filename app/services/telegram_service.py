@@ -147,7 +147,7 @@ async def parse_wildberries() -> List[str]:
         'appType': '1',
         'curr': 'rub',
         'dest': '-1029256,-102269,-2162196,-1255563',
-        'regions': '80,64,83,4,38,33,68,30,69,70,22,66,31,40',
+        'regions': '77',
         'resultset': 'catalog',
         'query': 'любой товар',
         'sort': 'popular',
