@@ -7,3 +7,5 @@ telethon
 pydantic-settings
 sqlalchemy
 qrcode
+pytest
+pytest-asyncio

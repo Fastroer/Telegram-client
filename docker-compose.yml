@@ -9,8 +9,12 @@ services:
       - .env
     depends_on:
       - db
+      - test_db
     volumes:
       - ./app/sessions:/app/app/sessions
+      - ./app/pytest.ini:/app/pytest.ini
+    networks:
+      - mynetwork
   
   db:
     image: postgres:13
@@ -20,6 +24,24 @@ services:
       POSTGRES_DB: telegram
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+  test_db:
+    container_name: test_pg_db
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: ${TEST_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${TEST_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${TEST_POSTGRES_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      - test_postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    networks:
+      - mynetwork
   
   pgadmin:
     image: dpage/pgadmin4
@@ -30,6 +52,12 @@ services:
       - "5050:80"
     env_file:
       - .env
+    networks:
+      - mynetwork
 
 volumes:
   postgres_data:
+  test_postgres_data:
+
+networks:
+  mynetwork:
